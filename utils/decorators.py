@@ -32,14 +32,15 @@ def log_allure_step(**kw):
     return decorator
 
 
-def screenshot_on_failure():
+def screenshot_on_failure(driver=None):
     def decorator(func):
         @functools.wraps(func)
         def wrapper(self, *args, **kwargs):
+            active_driver = driver if driver else self.driver
             try:
                 return func(self, *args, **kwargs)
             except Exception as e:
-                _take_screenshot(self.driver, title="Screenshot on failure")
+                _take_screenshot(active_driver, title="Screenshot on failure")
                 raise e
 
         return wrapper
@@ -47,14 +48,16 @@ def screenshot_on_failure():
     return decorator
 
 
-def screenshot_at_the_end():
+def screenshot_at_the_end(driver=None):
     def decorator(func):
         @functools.wraps(func)
         def wrapper(self, *args, **kwargs):
+            active_driver = driver(self) if driver else self.driver
+            print(f"Using driver: {active_driver}")
             try:
                 return func(self, *args, **kwargs)
             finally:
-                _take_screenshot(self.driver, title="Screenshot at the end")
+                _take_screenshot(active_driver, title="Screenshot at the end")
 
         return wrapper
 
