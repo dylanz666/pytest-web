@@ -30,6 +30,12 @@ class ConfigUtil:
         return p["browser_name"]
 
     @classmethod
+    def get_selenium_server(cls):
+        config_path = os.path.join(cls.root_path, "environment.properties")
+        p = pr_properties.read(file_path=config_path)
+        return p["selenium_server"]
+
+    @classmethod
     def get_global_timeout(cls):
         config_path = os.path.join(cls.root_path, "environment.properties")
         p = pr_properties.read(file_path=config_path)

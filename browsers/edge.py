@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as EdgeService
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from browsers.browser import Browser
+from utils.config_util import ConfigUtil
 
 
 class Edge(Browser):
@@ -13,4 +14,9 @@ class Edge(Browser):
         # options.add_argument("--headless")
         # 禁用 GPU 加速
         # options.add_argument("--disable-gpu")
-        return webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()), options=options)
+
+        selenium_server = ConfigUtil.get_selenium_server()
+        selenium_server = selenium_server if selenium_server else None
+        if selenium_server is None:
+            return webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()), options=options)
+        return webdriver.Remote(command_executor=selenium_server, options=options)

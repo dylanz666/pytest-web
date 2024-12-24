@@ -3,6 +3,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 
 from browsers.browser import Browser
+from utils.config_util import ConfigUtil
 
 
 class Chrome(Browser):
@@ -15,4 +16,9 @@ class Chrome(Browser):
         options.add_argument("--disable-infobars")
         # 无头模式（可选）
         # options.add_argument("--headless")
-        return webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+
+        selenium_server = ConfigUtil.get_selenium_server()
+        selenium_server = selenium_server if selenium_server else None
+        if selenium_server is None:
+            return webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+        return webdriver.Remote(command_executor=selenium_server, options=options)
