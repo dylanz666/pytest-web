@@ -5,7 +5,7 @@ from browsers.browser_factory import BrowserFactory
 from constants.severity import Severity
 from pages.home_page import HomePage
 from pages.search_page import SearchPage
-from utils.decorators import screenshot_on_failure
+from tools.decorators import screenshot_on_failure
 
 
 @allure.feature("Feature: Demo remote browser")

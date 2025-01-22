@@ -3,7 +3,7 @@ from browsers.edge import Edge
 from browsers.firefox import Firefox
 from browsers.safari import Safari
 from constants.browser_type import BrowserType
-from utils.config_util import ConfigUtil
+from tools.config_util import ConfigUtil
 
 
 class BrowserFactory:

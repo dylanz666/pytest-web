@@ -4,9 +4,9 @@ from datetime import datetime
 import allure
 import json as json_tool
 
-from utils.file_util import FileUtil
-from utils.logger import Logger
-from utils.random_util import RandomUtil
+from tools.file_util import FileUtil
+from tools.logger import Logger
+from tools.random_util import RandomUtil
 
 
 def log_allure_step(**kw):

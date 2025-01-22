@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as EdgeService
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from browsers.browser import Browser
-from utils.config_util import ConfigUtil
+from tools.config_util import ConfigUtil
 
 
 class Edge(Browser):

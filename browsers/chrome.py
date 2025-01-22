@@ -3,7 +3,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 
 from browsers.browser import Browser
-from utils.config_util import ConfigUtil
+from tools.config_util import ConfigUtil
 
 
 class Chrome(Browser):

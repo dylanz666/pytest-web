@@ -1,7 +1,7 @@
 import requests
 
 from constants.request_method import RequestMethod
-from utils.decorators import api_allure_step
+from tools.decorators import api_allure_step
 
 
 class HttpClient:

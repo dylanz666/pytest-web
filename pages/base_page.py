@@ -2,8 +2,8 @@ from selenium.common import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 
-from utils.config_util import ConfigUtil
-from utils.decorators import log_allure_step
+from tools.config_util import ConfigUtil
+from tools.decorators import log_allure_step
 
 
 class BasePage:

@@ -5,7 +5,7 @@ from browsers.browser_factory import BrowserFactory
 from constants.severity import Severity
 from pages.home_page import HomePage
 from pages.search_page import SearchPage
-from utils.decorators import screenshot_at_the_end
+from tools.decorators import screenshot_at_the_end
 
 
 @allure.feature("Feature: Demo multi browser")

@@ -1,6 +1,6 @@
 from selenium import webdriver
 from browsers.browser import Browser
-from utils.config_util import ConfigUtil
+from tools.config_util import ConfigUtil
 
 
 class Safari(Browser):

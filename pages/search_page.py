@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 from pages.base_page import BasePage
-from utils.decorators import log_allure_step, screenshot_on_failure
+from tools.decorators import log_allure_step, screenshot_on_failure
 
 
 class SearchPage(BasePage):
