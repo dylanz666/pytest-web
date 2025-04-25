@@ -47,7 +47,7 @@ Or:
 selenium_server=http://localhost:4444/wd/hub
 ```
 
-4. Use commands like below to run your test cases.
+5. Use commands like below to run your test cases.
 
 python runner.py - run
 
