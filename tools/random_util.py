@@ -51,4 +51,3 @@ class RandomUtil:
 
 if __name__ == "__main__":
     print(RandomUtil.get_random_string(20))
-    print(os.getcwd())
