@@ -2,17 +2,7 @@
 
 # Local
 
-pip install -r requirements.txt
-
-python runner.py - run
-
-python runner.py - generate_report
-
-python runner.py - open_report
-
-python runner.py - generate_report - open_report
-
-python runner.py - run - generate_report - open_report
+Go to last block of this document.
 
 # Remote
 
@@ -47,7 +37,7 @@ Or:
 selenium_server=http://localhost:4444/wd/hub
 ```
 
-5. Use commands like below to run your test cases.
+# Use commands like below to run your test cases(both for local and remote).
 
 python runner.py - run
 
