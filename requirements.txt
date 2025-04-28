@@ -9,3 +9,4 @@ pytest-xdist==3.6.1
 pydantic~=2.9.2
 selenium~=4.21.0
 webdriver-manager~=4.0.2
+loguru==0.7.3

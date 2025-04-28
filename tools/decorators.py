@@ -22,7 +22,7 @@ def log_allure_step(**kw):
             if kwargs:
                 step_info += f", kwargs: {kwargs}"
 
-            Logger.info(step_info)
+            Logger().info(step_info)
 
             with allure.step(step_info):
                 return func(self, *args, **kwargs)
@@ -100,30 +100,30 @@ def api_allure_step(**kw):
             if params is not None and params != {}:
                 query_string = '&'.join(f"{key}={value}" for key, value in params.items())
                 url = f"{url}?{query_string}"
-            Logger.info(f"[{method}]", url)
+            Logger().info(f"[{method}]", url)
 
             with allure.step(f"{method} {url}"):
                 # headers
                 if headers is not None and headers != {}:
-                    Logger.info(f"[Headers]", headers)
+                    Logger().info(f"[Headers]", json_tool.dumps(headers, indent=2))
                     allure.attach(json_tool.dumps(headers, indent=2), name="Request Headers",
                                   attachment_type=allure.attachment_type.JSON)
                 # send json request body
                 if json is not None and json != {}:
-                    Logger.info(f"[Json Request Body]", json)
+                    Logger().info(f"[Json Request Body]", json_tool.dumps(json, indent=2))
                     allure.attach(json_tool.dumps(json, indent=2), name="Json Request Body",
                                   attachment_type=allure.attachment_type.JSON)
                 # send text request body
                 if (json is None or json == {}) and data is not None and data != "":
-                    Logger.info(f"[Text Request Body]", data)
-                    allure.attach(json_tool.dumps(data, indent=2), name="Text Request Body",
-                                  attachment_type=allure.attachment_type.JSON)
+                    Logger().info(f"[Text Request Body]", data)
+                    allure.attach(data, name="Text Request Body",
+                                  attachment_type=allure.attachment_type.TEXT)
 
                 # other arguments
                 arguments = {key: value for key, value in arguments.items() if
                              key not in ['params']}
                 if arguments is not None and arguments != {}:
-                    Logger.info(f"[Arguments]", arguments)
+                    Logger().info(f"[Arguments]", json_tool.dumps(arguments, indent=2))
                     allure.attach(json_tool.dumps(arguments, indent=2), name="Arguments",
                                   attachment_type=allure.attachment_type.JSON)
 
@@ -132,6 +132,7 @@ def api_allure_step(**kw):
                 try:
                     # json response body
                     data = response.json()
+                    Logger().info(f"[JSON Response Body]", json_tool.dumps(data, indent=2))
                     allure.attach(json_tool.dumps(data, indent=2), name="Response",
                                   attachment_type=allure.attachment_type.JSON)
                 except ValueError:
@@ -139,6 +140,7 @@ def api_allure_step(**kw):
                     # set right encoding
                     response.encoding = response.apparent_encoding
                     data = response.text
+                    Logger().info(f"[Text Response Body]", data)
                     allure.attach(data, name="Response", attachment_type=allure.attachment_type.TEXT)
             return response
 
