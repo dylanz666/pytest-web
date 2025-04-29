@@ -43,7 +43,7 @@ npm install -g allure
 ```
 
 # Use commands like below to run your test cases(both for local and remote).
-
+```commandline
 python runner.py - run
 
 python runner.py - generate_report
@@ -71,4 +71,8 @@ python runner.py - run --maxfail=2
 python runner.py - run --failed_first=True
 
 python runner.py - run --ignore=tests\feature_a\test_multi_browser.py
+
+python runner.py - run --keyword=test_multi_browser --mark=P0 - generate_report - open_report
+```
+
 
