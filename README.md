@@ -38,11 +38,19 @@ selenium_server=http://localhost:4444/wd/hub
 ```
 
 # Install npm package allure for your project.
+
 ```commandline
 npm install -g allure
 ```
 
+# Install git commit hook.
+
+```commandline
+pre-commit install
+```
+
 # Use commands like below to run your test cases(both for local and remote).
+
 ```commandline
 python runner.py - run
 
@@ -74,5 +82,3 @@ python runner.py - run --ignore=tests\feature_a\test_multi_browser.py
 
 python runner.py - run --keyword=test_multi_browser --mark=P0 - generate_report - open_report
 ```
-
-
