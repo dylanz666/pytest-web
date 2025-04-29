@@ -37,6 +37,11 @@ Or:
 selenium_server=http://localhost:4444/wd/hub
 ```
 
+# Install npm package allure for your project.
+```commandline
+npm install -g allure
+```
+
 # Use commands like below to run your test cases(both for local and remote).
 
 python runner.py - run
@@ -57,15 +62,11 @@ python runner.py - run --keyword=test_multi_browser --mark=P0
 
 python runner.py - run --case_files=tests\feature_a\test_multi_browser.py
 
-python runner.py - run --last_failed
-
 python runner.py - run --last_failed=True
 
 python runner.py - run --concurrency=2
 
 python runner.py - run --maxfail=2
-
-python runner.py - run --failed_first
 
 python runner.py - run --failed_first=True
 
