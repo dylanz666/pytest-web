@@ -1,10 +1,10 @@
 # pytest-web
 
-# Local
+## Local
 
 Go to last block of this document.
 
-# Remote
+## Remote
 
 1. Install NodeJs.
 2. Install selenium-standalone package.
@@ -37,19 +37,19 @@ Or:
 selenium_server=http://localhost:4444/wd/hub
 ```
 
-# Install npm package allure for your project.
+## Install npm package allure for your project.
 
 ```commandline
 npm install -g allure
 ```
 
-# Install git commit hook.
+## Install git commit hook.
 
 ```commandline
 pre-commit install
 ```
 
-# Use commands like below to run your test cases(both for local and remote).
+## Use commands like below to run your test cases(both for local and remote).
 
 ```commandline
 python runner.py - run
