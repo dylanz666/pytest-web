@@ -3,7 +3,7 @@ from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 
 from tools.config_util import ConfigUtil
-from tools.decorators import log_allure_step
+from tools.decorators import allure_step
 
 
 class BasePage:
@@ -11,59 +11,59 @@ class BasePage:
         self.driver = driver
         self.wait = WebDriverWait(self.driver, ConfigUtil.get_global_timeout())
 
-    @log_allure_step()
+    @allure_step
     def open_url(self, url):
         """打开 url"""
         self.driver.get(url)
 
-    @log_allure_step()
+    @allure_step
     def close(self):
         """关闭当前浏览器"""
         self.driver.quit()
 
-    @log_allure_step()
+    @allure_step
     def get_title(self):
         """获取当前页面的标题"""
         return self.driver.title
 
-    @log_allure_step()
+    @allure_step
     def get_current_url(self):
         """获取当前页面的 URL"""
         return self.driver.current_url
 
-    @log_allure_step()
+    @allure_step
     def get_text(self, by, value):
         """获取元素文本"""
         return self.find_element(by, value).text
 
-    @log_allure_step()
+    @allure_step
     def get_attribute(self, by, value, attribute_name):
         """获取元素属性值"""
         return self.find_element(by, value).get_attribute(attribute_name)
 
-    @log_allure_step()
+    @allure_step
     def get_element_attributes(self, by, value):
         """获取元素的所有属性及其值"""
         element = self.find_element(by, value)
         return {attr.name: attr.value for attr in element.get_property('attributes')}
 
-    @log_allure_step()
+    @allure_step
     def get_css_value(self, by, value, css_property):
         """获取指定元素的 CSS 属性值"""
         element = self.find_element(by, value)
         return element.value_of_css_property(css_property)
 
-    @log_allure_step()
+    @allure_step
     def take_screenshot(self, file_path):
         """截取当前页面的屏幕截图并保存到指定路径"""
         self.driver.save_screenshot(file_path)
 
-    @log_allure_step()
+    @allure_step
     def click(self, by, value):
         """点击元素"""
         self.find_element(by, value).click()
 
-    @log_allure_step()
+    @allure_step
     def click_if_exists(self, by, value):
         """尝试点击元素，如果元素不存在则跳过"""
         try:
@@ -71,7 +71,7 @@ class BasePage:
         except NoSuchElementException:
             pass
 
-    @log_allure_step()
+    @allure_step
     def find_element(self, by, value):
         """获取元素"""
         return self.wait.until(EC.presence_of_element_located((by, value)))
@@ -80,7 +80,7 @@ class BasePage:
         """获取元素"""
         return self.wait.until(EC.presence_of_element_located((by, value)))
 
-    @log_allure_step()
+    @allure_step
     def is_exists(self, by, value):
         try:
             self._find_element(by, value)
@@ -88,88 +88,88 @@ class BasePage:
         except NoSuchElementException:
             return False
 
-    @log_allure_step()
+    @allure_step
     def find_elements(self, by, value):
         """获取多个元素并返回它们的列表"""
         return self.wait.until(EC.presence_of_all_elements_located((by, value)))
 
-    @log_allure_step()
+    @allure_step
     def wait_until_appears(self, by, value):
         """等待指定元素出现"""
         self.wait.until(EC.presence_of_element_located((by, value)))
 
-    @log_allure_step()
+    @allure_step
     def wait_until_disappears(self, by, value):
         """等待指定元素消失"""
         self.wait.until(EC.invisibility_of_element_located((by, value)))
 
-    @log_allure_step()
+    @allure_step
     def wait_until_clickable(self, by, value):
         """等待元素可点击"""
         return self.wait.until(EC.element_to_be_clickable((by, value)))
 
-    @log_allure_step()
+    @allure_step
     def wait_until_text_present(self, by, value, text):
         """等待指定文本出现在元素中"""
         self.wait.until(EC.text_to_be_present_in_element((by, value), text))
 
-    @log_allure_step()
+    @allure_step
     def input(self, by, value, keys):
         """输入文本"""
         element = self.find_element(by, value)
         element.clear()
         element.send_keys(keys)
 
-    @log_allure_step()
+    @allure_step
     def clear_input(self, by, value):
         """清除输入框中的文本"""
         element = self.find_element(by, value)
         element.clear()
 
-    @log_allure_step()
+    @allure_step
     def switch_to_iframe(self, by, value):
         """切换到指定的 iframe"""
         iframe = self.find_element(by, value)
         self.driver.switch_to.frame(iframe)
 
-    @log_allure_step()
+    @allure_step
     def switch_to_default_content(self):
         """从 iframe 返回到主文档"""
         self.driver.switch_to.default_content()
 
-    @log_allure_step()
+    @allure_step
     def select_dropdown_by_index(self, by, value, index):
         """通过索引选择下拉框中的选项"""
         element = self.find_element(by, value)
         select = Select(element)
         select.select_by_index(index)
 
-    @log_allure_step()
+    @allure_step
     def select_dropdown_by_visible_text(self, by, value, text):
         """通过可见文本选择下拉框中的选项"""
         element = self.find_element(by, value)
         select = Select(element)
         select.select_by_visible_text(text)
 
-    @log_allure_step()
+    @allure_step
     def select_dropdown_by_value(self, by, value, dropdown_value):
         """通过值选择下拉框中的选项"""
         element = self.find_element(by, value)
         select = Select(element)
         select.select_by_value(dropdown_value)
 
-    @log_allure_step()
+    @allure_step
     def scroll_to_element(self, by, value):
         """滚动到指定元素"""
         element = self.find_element(by, value)
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
-    @log_allure_step()
+    @allure_step
     def open_new_tab(self, url):
         """打开新标签页并导航到指定 URL"""
         self.driver.execute_script("window.open(arguments[0], '_blank');", url)
 
-    @log_allure_step()
+    @allure_step
     def switch_to_tab(self, tab_index):
         """切换到指定的标签页"""
         tabs = self.driver.window_handles
@@ -178,7 +178,7 @@ class BasePage:
             return
         raise IndexError("Tab index out of range.")
 
-    @log_allure_step()
+    @allure_step
     def close_current_tab(self):
         """关闭当前标签页"""
         self.driver.close()
