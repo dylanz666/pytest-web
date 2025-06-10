@@ -1,4 +1,5 @@
 from selenium.common import NoSuchElementException
+from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -20,6 +21,17 @@ class BasePage:
     def close(self):
         """关闭当前浏览器"""
         self.driver.quit()
+
+    @allure_step
+    def get_window_size(self):
+        """获取页面尺寸"""
+        window_size = self.driver.get_window_size()
+        return window_size['width'], window_size['height']
+
+    @allure_step
+    def get_page_source(self):
+        """获取页面的源代码"""
+        return self.driver.page_source
 
     @allure_step
     def get_title(self):
@@ -62,6 +74,20 @@ class BasePage:
     def click(self, by, value):
         """点击元素"""
         self.find_element(by, value).click()
+
+    @allure_step
+    def get_element_position(self, by, value):
+        """获取元素在页面上的坐标"""
+        return self.find_element(by, value).location
+
+    @allure_step
+    def click_position(self, x_coordinate, y_coordinate):
+        """点击元素"""
+        # way 1
+        actions = ActionChains(self.driver)
+        actions.move_by_offset(x_coordinate, y_coordinate).click().perform()
+        # way 2
+        # self.driver.execute_script(f"document.elementFromPoint({x_coordinate}, {y_coordinate}).click();")
 
     @allure_step
     def click_if_exists(self, by, value):
