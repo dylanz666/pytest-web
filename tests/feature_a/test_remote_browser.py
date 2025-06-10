@@ -29,7 +29,7 @@ class TestMultiBrowser:
     @allure.title("Demo remote browser")
     @allure.description("Demo remote browser")
     @allure.testcase("https://platform/test/case?id=124")
-    @screenshot_on_failure()
+    @screenshot_on_failure
     # @pytest.mark.skip
     def test_remote_browser(self):
         self.home_page.open_search_page()
