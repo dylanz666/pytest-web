@@ -34,6 +34,13 @@ class BasePage:
         return self.driver.page_source
 
     @allure_step
+    def save_page_source(self, file_path):
+        """获取页面的源代码并保存"""
+        page_source = self.driver.page_source
+        with open(file_path, "w", encoding="utf-8") as file:
+            file.write(page_source)
+
+    @allure_step
     def get_title(self):
         """获取当前页面的标题"""
         return self.driver.title
